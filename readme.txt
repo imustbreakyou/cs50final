@@ -26,3 +26,4 @@ API - First needed to sign up for an account and needed to get a token and run c
 Setting up IDE - Setting up my IDE was more complicated than I expected. There were many fantastic training wheels that were provided by the course that I needed to relearn. 
     My biggest takeaway was the importance of directory management and organization. The bootstrap template assumed that bootstrap resources were in a certain directory away from my projects.... I had to set that up
 
+Hardcoding the token and secret felt unsecure so I created environmental variables to hold them

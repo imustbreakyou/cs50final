@@ -4,12 +4,13 @@
 # further .env assitance from here: https://stackoverflow.com/questions/41546883/what-is-the-use-of-python-dotenv # 
 # API response assitance from: https://www.geeksforgeeks.org/response-json-python-requests/
 # Form to dict from here https://vortex.hashnode.dev/how-to-obtain-dict-from-a-flask-request-form-ck6c6ertx006s3cs1rw60rsk8 #
-#
+# Help with parsing Json: https://brightdata.com/blog/how-tos/parse-json-data-with-python
 
 from flask import Flask, request, render_template
 from dotenv import load_dotenv
 import os
 import requests
+import json
 
 
 
@@ -28,49 +29,61 @@ def results():
 
 
 
-
-
 @app.route("/call_api", methods=['GET', 'POST'])
 def call_api():
     if request.method == "POST":
         print("post request received")
 
+        # Prepare API Call
         source_url = "https://api.twitch.tv/helix/streams"
         url = build_api_url(source_url)
-        print(url)
-
-
-        # Access API keys 
+       
         load_dotenv('/absolute/path/to/.env')
         client_id = os.getenv('TWITH_CLIENT_ID')
         oauth_token = os.getenv('TWITCH_OAUTH_TOKEN')
+    
 
+        # Error handling for missing access tokens
         if not client_id or not oauth_token:
             print("missing API token or id")
             return None
-
-  
-      
-
+        
         headers = {
             
             'Client-Id': client_id,
             'Authorization': f'Bearer {oauth_token}'
 
         }
-        
+        # THIS MAKES THE REQUEST 
         response = requests.get(url, headers=headers)
         print(response)
-        print(response.json())
-
-        if response.status_code == 200:
-            #print response
-            results = "data"
-            return render_template('results.html', results=results)
         
-        else:
+        # Error Handling for failed API Call 
+        if response.status_code != 200:
             print(f"Failed to fetch data: {response.status_code}")
             return None
+
+        
+        # Store json data in dictionary 
+        json_data = response.json()
+              
+        streams = {}
+        stream_counter = 0
+        for item in json_data['data']:
+            streams[item['user_id']] = {
+                'user_id': item['user_id'],
+                'user_name': item['user_name'],
+                'game_name': item['game_name'],
+                'viewer_count': item['viewer_count']
+            }
+            stream_counter += 1
+ 
+        dynamic_header = stream_counter
+
+        return render_template('results.html', dynamic_header=dynamic_header, streams=streams)
+        
+           
+
     else:
         return redirect('/')
     
@@ -83,7 +96,7 @@ def build_api_url(source_url):
 
     #hard coded value
     parameter_1_name = "language="
-    parameter_1_value = "es"
+    parameter_1_value = "en"
 
     
     final_url = source_url+"?"+parameter_1_name+parameter_1_value

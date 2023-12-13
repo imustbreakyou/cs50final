@@ -1,4 +1,6 @@
 <!-- Template provided by: https://getbootstrap.com/docs/5.0/examples/dashboard/ -->
+<!-- Rendering help from jinja documentation: https://jinja.palletsprojects.com/en/3.1.x/templates/
+-->
 {% extends "layout.html" %}
 {% block title %}
 Results
@@ -6,8 +8,26 @@ Results
 
 {% block content %}
 <main role="main" class="inner cover">
-    <h1>RESULT: {{ results }}</h1>
-    
+    <h1>Total Results: {{ dynamic_header }}</h1>
+    <div>
+        <table>
+            <tr>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>Stream Content</th>
+                <th>Viewer Count</th>
+            </tr>
+            {% for user_id, stream in streams.items() %}
+                <tr>
+                        <td>{{ user_id }}</td>
+                        <td>{{ stream.user_name }}</td>
+                        <td>{{ stream.game_name }}</td>
+                        <td>{{ stream.viewer_count }}</td>                    
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
     
 
 {% endblock %}

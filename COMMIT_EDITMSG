@@ -1,0 +1,15 @@
+implement URL concatenation function with hardcoded parameter
+
+- Created function to concatenate URL with URL parameter
+- Harded Coded Spanish as a query 
+- Confirmed function operates as expected with Spanish data returned
+- Built Pseudocode framework for handle_form_submission function 
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Changes to be committed:
+#	modified:   app.py
+#

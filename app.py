@@ -1,17 +1,20 @@
-# ATTRIBUTIONS #
+# ATTRIBUTIONS #flask 
 # environmental variable information from: https://ioflood.com/blog/python-get-environment-variable/#:~:text=to%20access%20it.-,Use%20os.,to%20safely%20access%20environment%20variables.#
 # calling environmental variables in python from this source: https://dagster.io/blog/python-environment-variables
-
+# further .env assitance from here: https://stackoverflow.com/questions/41546883/what-is-the-use-of-python-dotenv # 
 from flask import Flask, request, render_template
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
+import os
 import requests
 
-# Load the .env file
-load_dotenv()
 
 
 app = Flask(__name__)
 app.debug = True
+
+print(os.environ)
+
+
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -39,11 +42,9 @@ def call_api():
         print("post request received")
     
         # Access API keys 
-        import os
+        load_dotenv('/absolute/path/to/.env')
         client_id = os.getenv('TWITH_CLIENT_ID')
         oauth_token = os.getenv('TWITCH_OAUTH_TOKEN')
-        print(client_id)
-        print(oauth_token)
 
         if not client_id or not oauth_token:
             print("missing API token or id")

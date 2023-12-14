@@ -15,7 +15,7 @@
     <title>
     {% block title %}layout{% endblock %}
     </title>
-    <link rel="template_source" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+   
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
@@ -24,42 +24,37 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
   </head>
 
-  <div class="site-wrapper">
+  <div class="site-wrapper d-flex alighn-items-center justify-content-center">
 
-    <div class="site-wrapper-inner">
-      
 
-      <div class="container"> 
-       
-
-        <div class="masthead clearfix">
-          <div class="container inner">
-            
-            <h3 cla~ss="masthead-brand">Twitch Scraper MVP</h3>
-            <nav>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li ><a href="/results">Results</a></li>
-                <li ><a href="#">Profile</a></li>
-              </ul>
-            </nav>
-            
-          
-          
-          </div>
-          {% block content %}{% endblock %}
-        </div>
-
+    <nav class="text navbar navbar-expand-lg navbar-light">
+      <a class="text navbar-brand" href="#">CS50 Final Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="text nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="text nav-link" href="/results">Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="text nav-link" href="#">Profile</a>
+          </li>
       </div>
+    </nav>     
+  </div>   
+  
+<div class="holding-container">
 
-    </div>
-    
+  {% block content %}{% endblock %}
+
+</div>
 
 
 
-
-
-  </div>
 
  
 
@@ -69,6 +64,6 @@
     <script src="jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    ~
+    
   </body>
 </html>

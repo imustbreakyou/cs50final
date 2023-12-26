@@ -70,12 +70,15 @@ def call_api():
         streams = {}
         stream_counter = 0
         for item in json_data['data']:
-            streams[item['user_id']] = {
-                'user_id': item['user_id'],
-                'user_name': item['user_name'],
-                'game_name': item['game_name'],
-                'viewer_count': item['viewer_count']
-            }
+            # SAFE SEARCH ON
+            # if streams[item['is_mature']] is False:
+                streams[item['user_id']] = {
+                    'user_id': item['user_id'],
+                    'user_name': item['user_name'],
+                    'game_name': item['game_name'],
+                    'viewer_count': item['viewer_count']
+                    #'result_place': item[stream_counter + 1]
+                }
             stream_counter += 1
  
         dynamic_header = stream_counter
@@ -105,11 +108,12 @@ def build_api_url(source_url):
 
 
 
-# Form Submission Function 
-#def handle_form_submission():
+# Form Handler Function 
+#def form_handler():
 #   data = request.form.to_dict()
 # n=0  
-# for data in data:
+# if data
+#   for data in data:
 #       data[f'variable_{n}'] = ""
 #       n += 1
 # return data 

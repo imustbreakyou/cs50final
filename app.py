@@ -8,7 +8,7 @@
 # Dynamic URL creation from: https://stackoverflow.com/questions/74435785/python-create-dynamic-url-for-api-call
 # Negative Indexing to remove final character from string: https://www.geeksforgeeks.org/python-program-to-remove-last-character-from-the-string/
 # Rendering a dictionary in jinja and python: https://stackoverflow.com/questions/19141073/rendering-a-dictionary-in-jinja2
-
+# remove final character from string: https://www.w3schools.com/python/ref_string_rstrip.asp#:~:text=The%20rstrip()%20method%20removes,default%20trailing%20character%20to%20remove.
 from flask import Flask, request, render_template, url_for, flash, redirect
 from dotenv import load_dotenv
 import os
@@ -61,15 +61,16 @@ def form_handler():
         type = request.form.getlist('type')
         print(type)
 
-          #game 
-        #&game_id=9876&game_id=5432
-        #game_name = request.form.getlist('game_name')
-
-        return process_form(language, type)
+        # game intake 
+        
+        game = request.form.getlist('game')
+        print(game)
+        
+        return process_form(language, type, game)
 
 
     
-def process_form(language, type):
+def process_form(language, type, game):
     print("process_form fired!")
     # set empty string
     parameter_string = ""
@@ -82,40 +83,27 @@ def process_form(language, type):
             parameter_string += f"language={lang}&"
             print("language processed")
 
-        print (f"Post Iteration Param String = {parameter_string}")
-        # remove final character using negative indexing and add "?"
-        parameter_string = f"{parameter_string[:-1]}"
-        print(f"final langauge parameter string before api_url: {parameter_string}")
 
-                
-    else:
-        parameter_string = ""
-    
-
-
+     
     if type:  
         for item in type:
             #use f-string for url creation
             parameter_string += f"type={item}&"
             print("item processed")
-
-    print (f"Post Iteration Param String = {parameter_string}")
-    # remove final character using negative indexing and add "?"
-    parameter_string = f"{parameter_string[:-1]}"
-    print(f"final langauge parameter string before api_url: {parameter_string}")
-        
-
-    #if game:  
-        #iterate over dictionary
-        #process_list(type)
-        # TODO when implementing game, ensure that type param string ends with ?
     
-    #else:
-        #parameter_string = ""
 
 
+    if game:
+        for item in game:
+             #use f-string for url creation
+            parameter_string += f"game_id={item}&"
+            print("game processed")
+
+
+    parameter_string = parameter_string.rstrip('&')
+    print(parameter_string)
     return build_api_url(source_url, parameter_string)
-      
+    
 
 
 

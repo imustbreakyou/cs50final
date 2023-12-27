@@ -48,7 +48,7 @@
                   {% for game in top_games %}
                   <div class="checkbox-container">
                     <label for="game-{{ loop.index }}"> {{ game['game_name']}} </label>
-                    <input type="checkbox" id="game-{{ loop.index }}" name="top-game" value="{{ game['game_id'] }}"><br>
+                    <input type="checkbox" id="game-{{ loop.index }}" name="game" value="{{ game['game_id'] }}"><br>
                   </div>
                   {% endfor %}
                 {% endblock %}

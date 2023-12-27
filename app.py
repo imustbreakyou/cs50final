@@ -26,68 +26,21 @@ def index():
 
 
 
-@app.route("/call_api", methods=['GET', 'POST'])
-def call_api():
+
+
+@app.route("/form_handler", methods=['GET', 'POST'])  
+def form_handler():
     if request.method == "POST":
-        print("post request received")
+        print("form_handler fired")
+        return call_api()
+# if data
+#   for data in data:
+#       data[f'variable_{n}'] = ""
+#       n += 1
+# return data 
+#
+#
 
-        # Prepare API Call
-        source_url = "https://api.twitch.tv/helix/streams"
-        url = build_api_url(source_url)
-       
-        load_dotenv('/absolute/path/to/.env')
-        client_id = os.getenv('TWITH_CLIENT_ID')
-        oauth_token = os.getenv('TWITCH_OAUTH_TOKEN')
-    
-
-        # Error handling for missing access tokens
-        if not client_id or not oauth_token:
-            print("missing API token or id")
-            return None
-        
-        headers = {
-            
-            'Client-Id': client_id,
-            'Authorization': f'Bearer {oauth_token}'
-
-        }
-        # THIS MAKES THE REQUEST 
-        response = requests.get(url, headers=headers)
-        print(response)
-        
-        # Error Handling for failed API Call 
-        if response.status_code != 200:
-            print(f"Failed to fetch data: {response.status_code}")
-            return None
-
-        
-        # Store json data in dictionary 
-        json_data = response.json()
-              
-        streams = {}
-        stream_counter = 0
-        for item in json_data['data']:
-            stream_counter += 1
-            streams[item['user_id']] = {
-                'user_id': item['user_id'],
-                'user_name': item['user_name'],
-                'game_name': item['game_name'],
-                'viewer_count': item['viewer_count'],
-                'language': item['language'],
-                'type': item['type'],
-                'result_count': stream_counter 
-            }
-        print(stream_counter)
-            
- 
-        dynamic_header = stream_counter
-
-        return render_template('index.html', dynamic_header=dynamic_header, streams=streams)
-        
-           
-
-    else:
-        return redirect('/')
     
 def build_api_url(source_url):
     
@@ -104,21 +57,63 @@ def build_api_url(source_url):
     final_url = source_url+"?"+parameter_1_name+parameter_1_value
     print(final_url)
     return final_url
+        
 
 
 
-# Form Handler Function 
-def form_handler():
-    data = request.form.to_dict()
-    n=0  
-# if data
-#   for data in data:
-#       data[f'variable_{n}'] = ""
-#       n += 1
-# return data 
-#
-#
+def call_api():
+    
+    print("call_apifired")
+
+    # Prepare API Call
+    source_url = "https://api.twitch.tv/helix/streams"
+    url = build_api_url(source_url)
+    
+    load_dotenv('/absolute/path/to/.env')
+    client_id = os.getenv('TWITH_CLIENT_ID')
+    oauth_token = os.getenv('TWITCH_OAUTH_TOKEN')
+
+
+    # Error handling for missing access tokens
+    if not client_id or not oauth_token:
+        print("missing API token or id")
+        return None
+    
+    headers = {
+        
+        'Client-Id': client_id,
+        'Authorization': f'Bearer {oauth_token}'
+
+    }
+    # THIS MAKES THE REQUEST 
+    response = requests.get(url, headers=headers)
+    print(response)
+    
+    # Error Handling for failed API Call 
+    if response.status_code != 200:
+        print(f"Failed to fetch data: {response.status_code}")
+        return None
 
     
-
+    # Store json data in dictionary 
+    json_data = response.json()
+            
+    streams = {}
+    stream_counter = 0
+    for item in json_data['data']:
+        stream_counter += 1
+        streams[item['user_id']] = {
+            'user_id': item['user_id'],
+            'user_name': item['user_name'],
+            'game_name': item['game_name'],
+            'viewer_count': item['viewer_count'],
+            'language': item['language'],
+            'type': item['type'],
+            'result_count': stream_counter 
+        }
+    print(stream_counter)
         
+
+    dynamic_header = stream_counter
+
+    return render_template('index.html', dynamic_header=dynamic_header, streams=streams)

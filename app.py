@@ -7,7 +7,7 @@
 # Help with parsing Json: https://brightdata.com/blog/how-tos/parse-json-data-with-python
 # Dynamic URL creation from: https://stackoverflow.com/questions/74435785/python-create-dynamic-url-for-api-call
 # Negative Indexing to remove final character from string: https://www.geeksforgeeks.org/python-program-to-remove-last-character-from-the-string/
-
+# Rendering a dictionary in jinja and python: https://stackoverflow.com/questions/19141073/rendering-a-dictionary-in-jinja2
 
 from flask import Flask, request, render_template, url_for, flash, redirect
 from dotenv import load_dotenv
@@ -22,10 +22,21 @@ app.debug = True
 
 source_url = "https://api.twitch.tv/helix/streams"
 
+
+
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    # hard coded top games TODO def get_top-games()
+    
+    top_games = [{'game_name': 'League of Legends', 'game_id': '21779'}, 
+            {'game_name': 'Just Chatting', 'game_id': '509658'},
+            {'game_name': 'World of Warcraft', 'game_id': '18122'},
+            {'game_name': 'Fortnite', 'game_id': '33214'},
+            {'game_name': 'Minecraft', 'game_id': '27471'}]
+    
     if request.method == "GET":
-        return render_template('layout.html')
+        return render_template('layout.html', top_games=top_games)
     else:
         return redirect('index.html')
 
@@ -41,6 +52,11 @@ def form_handler():
         #game_name = request.form.getlist('game_name')
         print(language)
 
+        #type
+        #&game_id=9876&game_id=5432
+
+        #type
+        #&type=all&type=live
 
         return process_form(language)
 
@@ -69,8 +85,9 @@ def process_form(language):
     
     # pass to build_api_url
     return build_api_url(source_url, parameter_string)
-    
-        
+      
+
+
 
 def build_api_url(source_url, parameter_string):
 
@@ -89,7 +106,7 @@ def build_api_url(source_url, parameter_string):
 
 def call_api(api_url):
     
-    print("call_apifired")
+    print("call_api fired")
 
    
     
@@ -133,7 +150,8 @@ def call_api(api_url):
             'viewer_count': item['viewer_count'],
             'language': item['language'],
             'type': item['type'],
-            'result_count': stream_counter 
+            'result_count': stream_counter,
+            'game_id': item['game_id']
         }
     print(stream_counter)
         

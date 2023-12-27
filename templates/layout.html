@@ -2,7 +2,7 @@
 <!-- Design Inspiration:  v -->
 <!-- Boilerplate: https://www.freecodecamp.org/news/basic-html5-template-boilerplate-code-example/ -->
 <!-- Flexbox Education and resources: https://www.theodinproject.com/lessons/foundations-introduction-to-flexbox -->
-
+<!-- Jinja help with Loop index: https://stackoverflow.com/questions/12145434/how-to-output-loop-counter-in-python-jinja-template -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +37,28 @@
                   <input type="checkbox" id="langauge-3" name="language" value="de"><br>
                 </div>
               </div>
-              <div class="expandable-type">Stream Type</div>
-              <div class="expandable-game-name">Stream Catagory</div>
+              <div class="expandable-type">Stream Type!
+                <div class="checkbox-container">
+                  <label for="type1"> Live </label>
+                  <input type="checkbox" id="type-1" name="type" value="live"><br>
+      
+                </div>
+                <div class="checkbox-container">
+                  <label for="type2"> All </label>
+                  <input type="checkbox" id="type-2" name="type" value="all"><br>
+                </div>
+              </div>
+              <div class="expandable-game-name">Stream Catagory
+                {% block content %}
+                  {% for game in top_games %}
+                  <div class="checkbox-container">
+                    <label for="game-{{ loop.index }}"> {{ game['game_name']}} </label>
+                    <input type="checkbox" id="game-{{ loop.index }}" name="top-game" value="{{ game['game_id'] }}"><br>
+                  </div>
+                  {% endfor %}
+                {% endblock %}
+              </div>
+             <!--"League of Legends": "21779", "Just Chatting": "509658", "World of Warcraft": "18122", "Fortnite": "33214", "Minecraft": "27471" -->
               <div class="safe-search">Safe Search: ON</div>
               <div class="search-clear-container">
                 <form action="/clear" method="POST">

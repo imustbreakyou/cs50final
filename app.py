@@ -5,6 +5,9 @@
 # API response assitance from: https://www.geeksforgeeks.org/response-json-python-requests/
 # Form to dict from here https://vortex.hashnode.dev/how-to-obtain-dict-from-a-flask-request-form-ck6c6ertx006s3cs1rw60rsk8 #
 # Help with parsing Json: https://brightdata.com/blog/how-tos/parse-json-data-with-python
+# Dynamic URL creation from: https://stackoverflow.com/questions/74435785/python-create-dynamic-url-for-api-call
+# Negative Indexing to remove final character from string: https://www.geeksforgeeks.org/python-program-to-remove-last-character-from-the-string/
+
 
 from flask import Flask, request, render_template, url_for, flash, redirect
 from dotenv import load_dotenv
@@ -16,6 +19,8 @@ import requests
 
 app = Flask(__name__)
 app.debug = True
+
+source_url = "https://api.twitch.tv/helix/streams"
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -31,43 +36,62 @@ def index():
 @app.route("/form_handler", methods=['GET', 'POST'])  
 def form_handler():
     if request.method == "POST":
-        print("form_handler fired")
-        return call_api()
-# if data
-#   for data in data:
-#       data[f'variable_{n}'] = ""
-#       n += 1
-# return data 
-#
-#
+        language = request.form.getlist('language')
+        #type = request.form.getlist('type')
+        #game_name = request.form.getlist('game_name')
+        print(language)
+
+
+        return process_form(language)
+
 
     
-def build_api_url(source_url):
+def process_form(language):
+    print("process_form fired!")
+    # set empty string
+    parameter_string = ""
+    print("Pre iteration parameter string =", parameter_string)
+
+    #iterate over dictionary
+    for language in language:
+        #use f-string for url creation
+        parameter_string += f"language={language}&"
+        print("language processed")
+
+    print (f"Post Iteration Param String = {parameter_string}")
+        
     
     
-    # parameter_1['value'] = en -- To use one we have handle_form function
-          # Set API call params with f"url?{}{}{}""
+    # remove final character using negative indexing
+    parameter_string = parameter_string[:-1]
+
+    print(f"final parameter string before api_url: {parameter_string}")
+    
+    # pass to build_api_url
+    return build_api_url(source_url, parameter_string)
+    
         
 
-    #hard coded value
-    parameter_1_name = "language="
-    parameter_1_value = "en"
+def build_api_url(source_url, parameter_string):
 
+     # Prepare API Call
+    api_url = f"{source_url}?{parameter_string}"
+    print(f"api_url: {api_url}")
     
-    final_url = source_url+"?"+parameter_1_name+parameter_1_value
-    print(final_url)
-    return final_url
+    print(api_url)
+    #return final_url
+    return call_api(api_url)
         
 
 
 
-def call_api():
+
+
+def call_api(api_url):
     
     print("call_apifired")
 
-    # Prepare API Call
-    source_url = "https://api.twitch.tv/helix/streams"
-    url = build_api_url(source_url)
+   
     
     load_dotenv('/absolute/path/to/.env')
     client_id = os.getenv('TWITH_CLIENT_ID')
@@ -86,7 +110,7 @@ def call_api():
 
     }
     # THIS MAKES THE REQUEST 
-    response = requests.get(url, headers=headers)
+    response = requests.get(api_url, headers=headers)
     print(response)
     
     # Error Handling for failed API Call 

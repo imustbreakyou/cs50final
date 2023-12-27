@@ -58,29 +58,61 @@ def form_handler():
       
 
         # type intake
-        #type = request.form.getlist('type')
-        #print(type)
+        type = request.form.getlist('type')
+        print(type)
 
           #game 
         #&game_id=9876&game_id=5432
         #game_name = request.form.getlist('game_name')
 
-        return process_form(language)
+        return process_form(language, type)
 
 
     
-def process_form(language):
+def process_form(language, type):
     print("process_form fired!")
     # set empty string
     parameter_string = ""
     print("Pre iteration parameter string =", parameter_string)
-    
+
     if language:  
         #iterate over dictionary
-        process_list(language)
+        for lang in language:
+            #use f-string for url creation
+            parameter_string += f"language={lang}&"
+            print("language processed")
+
+        print (f"Post Iteration Param String = {parameter_string}")
+        # remove final character using negative indexing and add "?"
+        parameter_string = f"{parameter_string[:-1]}"
+        print(f"final langauge parameter string before api_url: {parameter_string}")
+
+                
     else:
         parameter_string = ""
     
+
+
+    if type:  
+        for item in type:
+            #use f-string for url creation
+            parameter_string += f"type={item}&"
+            print("item processed")
+
+    print (f"Post Iteration Param String = {parameter_string}")
+    # remove final character using negative indexing and add "?"
+    parameter_string = f"{parameter_string[:-1]}"
+    print(f"final langauge parameter string before api_url: {parameter_string}")
+        
+
+    #if game:  
+        #iterate over dictionary
+        #process_list(type)
+        # TODO when implementing game, ensure that type param string ends with ?
+    
+    #else:
+        #parameter_string = ""
+
 
     return build_api_url(source_url, parameter_string)
       
@@ -159,19 +191,3 @@ def call_api(api_url):
     dynamic_header = stream_counter
 
     return render_template('index.html', dynamic_header=dynamic_header, streams=streams)
-
-def process_list(list):
-    parameter_string = ""
-    for item in list:
-        #use f-string for url creation
-        parameter_string += f"language={item}&"
-        print("item processed")
-
-    print (f"Post Iteration Param String = {parameter_string}")
-
-    # remove final character using negative indexing
-    parameter_string = parameter_string[:-1]
-
-    print(f"final parameter string before api_url: {parameter_string}")
-
-    return parameter_string

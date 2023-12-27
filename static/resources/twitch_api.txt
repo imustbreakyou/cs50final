@@ -45,3 +45,19 @@ https://dev.twitch.tv/docs/api/reference/#get-streams
 
 URL
 GET https://api.twitch.tv/helix/streams
+
+
+This Worked 
+https://api.twitch.tv/helix/streams?language=en&language=es&language=de?type=live
+https://api.twitch.tv/helix/streams?type=live
+https://api.twitch.tv/helix/streams?language=en
+https://api.twitch.tv/helix/streams?language=en&language=es?type=live
+https://api.twitch.tv/helix/streams?language=en&language=de?type=live
+
+This Failed
+https://api.twitch.tv/helix/streams?language=en?type=live
+https://api.twitch.tv/helix/streams?language=es?type=live
+https://api.twitch.tv/helix/streams?language=de?type=live
+
+
+

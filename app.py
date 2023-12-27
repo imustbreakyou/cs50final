@@ -47,16 +47,23 @@ def index():
 @app.route("/form_handler", methods=['GET', 'POST'])  
 def form_handler():
     if request.method == "POST":
+        # TODO empty form values
+        # language intake
         language = request.form.getlist('language')
+        if language:
+            print(language)
+        else:
+            language = None
+
+      
+
+        # type intake
         #type = request.form.getlist('type')
-        #game_name = request.form.getlist('game_name')
-        print(language)
+        #print(type)
 
-        #type
+          #game 
         #&game_id=9876&game_id=5432
-
-        #type
-        #&type=all&type=live
+        #game_name = request.form.getlist('game_name')
 
         return process_form(language)
 
@@ -67,22 +74,22 @@ def process_form(language):
     # set empty string
     parameter_string = ""
     print("Pre iteration parameter string =", parameter_string)
+    if language:
+            
+        #iterate over dictionary
+        for language in language:
+            #use f-string for url creation
+            parameter_string += f"language={language}&"
+            print("language processed")
 
-    #iterate over dictionary
-    for language in language:
-        #use f-string for url creation
-        parameter_string += f"language={language}&"
-        print("language processed")
+        print (f"Post Iteration Param String = {parameter_string}")
 
-    print (f"Post Iteration Param String = {parameter_string}")
-        
-    
-    
-    # remove final character using negative indexing
-    parameter_string = parameter_string[:-1]
+        # remove final character using negative indexing
+        parameter_string = parameter_string[:-1]
 
-    print(f"final parameter string before api_url: {parameter_string}")
-    
+        print(f"final parameter string before api_url: {parameter_string}")
+    else:
+        parameter_string = ""
     # pass to build_api_url
     return build_api_url(source_url, parameter_string)
       
@@ -138,10 +145,12 @@ def call_api(api_url):
     
     # Store json data in dictionary 
     json_data = response.json()
-            
+    
+    # dictionary builder 
     streams = {}
     stream_counter = 0
     for item in json_data['data']:
+        # TODO safe search filter! (if is_mature == FALSE
         stream_counter += 1
         streams[item['user_id']] = {
             'user_id': item['user_id'],

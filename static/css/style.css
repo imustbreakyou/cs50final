@@ -96,15 +96,56 @@ html, body {
 
          }
          
-         .search-clear-container {
-            border: 2px dashed red;
+         .filter-button-container {
+            
             display: flex;
+            margin-left: 10px;
+            margin-right: 10px;
+
+            
+            
             gap: 10px;
          }
             .clear {
-
+               flex: 1;
+               display: inline-block;
+               outline: none;
+               cursor: pointer;
+               padding: 0 16px;
+               background-color: #fff;
+               border-radius: 0.25rem;
+               border: 1px solid #0070d2;
+               color: #0070d2;
+               font-size: 13px;
+               line-height: 30px;
+               font-weight: 400;
+               text-align: center;
+               :hover {
+                   background-color: #f4f6f9; 
+               } 
+           
             }
             .search {
+               flex: 1;
+          
+               display: inline-block;
+               outline: none;
+               cursor: pointer;
+               padding: 0 16px;
+               background-color: #0070d2;
+               border-radius: 0.25rem;
+               border: 1px solid #0070d2;
+               color: #fff;
+               font-size: 13px;
+               line-height: 30px;
+               font-weight: 400;
+               text-align: center;
+               :hover {
+                   background-color: #005fb2;  
+                   border-color: #005fb2;
+               } 
+           
+               
 
             }
 

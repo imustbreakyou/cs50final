@@ -74,23 +74,14 @@ def process_form(language):
     # set empty string
     parameter_string = ""
     print("Pre iteration parameter string =", parameter_string)
-    if language:
-            
+    
+    if language:  
         #iterate over dictionary
-        for language in language:
-            #use f-string for url creation
-            parameter_string += f"language={language}&"
-            print("language processed")
-
-        print (f"Post Iteration Param String = {parameter_string}")
-
-        # remove final character using negative indexing
-        parameter_string = parameter_string[:-1]
-
-        print(f"final parameter string before api_url: {parameter_string}")
+        process_list(language)
     else:
         parameter_string = ""
-    # pass to build_api_url
+    
+
     return build_api_url(source_url, parameter_string)
       
 
@@ -168,3 +159,19 @@ def call_api(api_url):
     dynamic_header = stream_counter
 
     return render_template('index.html', dynamic_header=dynamic_header, streams=streams)
+
+def process_list(list):
+    parameter_string = ""
+    for item in list:
+        #use f-string for url creation
+        parameter_string += f"language={item}&"
+        print("item processed")
+
+    print (f"Post Iteration Param String = {parameter_string}")
+
+    # remove final character using negative indexing
+    parameter_string = parameter_string[:-1]
+
+    print(f"final parameter string before api_url: {parameter_string}")
+
+    return parameter_string

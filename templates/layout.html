@@ -1,69 +1,93 @@
-<!-- Website template from bootstrap's cover templte: https://getbootstrap.com/docs/4.0/examples/cover/# -->
-<!-- Additional Attributions -->
-<!-- Additional Attributions -->
-<!-- Additional Attributions -->
+<!-- Attributions --> 
+<!-- Design Inspiration:  v -->
+<!-- Boilerplate: https://www.freecodecamp.org/news/basic-html5-template-boilerplate-code-example/ -->
+<!-- Flexbox Education and resources: https://www.theodinproject.com/lessons/foundations-introduction-to-flexbox -->
 
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CS50 Final Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-
-    <title>
-    {% block title %}layout{% endblock %}
-    </title>
-   
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
   </head>
+  <body>
+    <div class="page-container">
+        <div class="header">CS50 Final Project: Twitch API Research</div>
+        <div class="main-container">
+            
+          <div class="filter-container">
+            <div class="filter-header">filter by....</div>
+            <div class="filter">
+              <div class="expandable-language"> Stream Language</div>
+              <div class="expandable-type">Stream Type</div>
+              <div class="expandable-game-name">Stream Catagory</div>
+              <div class="safe-search">Safe Search: ON</div>
+              <div class="search-clear-container">
+                <div class="clear">Clear</div>
+                <form action="/call_api" method="POST">
+                  <button href="#"  class="search" name="call-api">Do the thing!</button>
+                </form>
+              </div>
+            </div>
 
-  <div class="site-wrapper d-flex alighn-items-center justify-content-center">
+          </div>
+            
+            <div class="results-container"> 
+              
+
+              
+              <div class="results-header-container">
+                <div class="results-filters"> filter 1, filter 2, filter 3</div>
+                <div class="results-header">
+                  <div class="results-info">Total Results: #</div>
+                  <div class="results-sort-by"> sort by</div>
+                </div>
+              </div>
+              
+              <div class="results"> 
+
+             
+                    <div class="results-tile">
+                      
+                      <div class="tile-left">
+                        <div class="left-viewers">Viewers: </div>
+                        <div class="left-thumbnail">IMG</div>
+                      </div>
+                      <div class="tile-center">
+                        <div class="center-info">User Name: (User_ID: ) </div>
+                        <div class="center-tags"> Type, Language,  Safe Search: ON</div>
+                      </div>
+                      <div class="tile-right">Result #</div>
+                    </div>
+                  
+                    
+              </div>
+            
+
+              <div class="results-footer"></div>
+            </div>
+          <div class="results-right-margin"></div>
+        </div>
+        <div class="footer">footer</div>
 
 
-    <nav class="text navbar navbar-expand-lg navbar-light">
-      <a class="text navbar-brand" href="#">CS50 Final Project</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="text nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="text nav-link" href="/results">Results</a>
-          </li>
-          <li class="nav-item">
-            <a class="text nav-link" href="#">Profile</a>
-          </li>
-      </div>
-    </nav>     
-  </div>   
-  
-<div class="holding-container">
 
-  {% block content %}{% endblock %}
-
-</div>
+    </div>
 
 
 
 
- 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="jquery-3.7.1.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    
+
+
+
+
+
+
+	<script src="index.js"></script>
   </body>
 </html>

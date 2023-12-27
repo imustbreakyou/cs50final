@@ -10,7 +10,7 @@ from flask import Flask, request, render_template
 from dotenv import load_dotenv
 import os
 import requests
-
+import json
 
 
 
@@ -19,10 +19,13 @@ app.debug = True
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    if request.method == "GET":
-        return render_template('layout.html')
-    else:
-        return redirect('index.html')
+    return render_template('layout.html')
+
+
+@app.route("/results", methods=['GET', 'POST'])
+def results():
+    print("hit results root from nav")
+    return render_template('layout.html')
 
 
 
@@ -67,27 +70,22 @@ def call_api():
         streams = {}
         stream_counter = 0
         for item in json_data['data']:
-            stream_counter += 1
             streams[item['user_id']] = {
                 'user_id': item['user_id'],
                 'user_name': item['user_name'],
                 'game_name': item['game_name'],
-                'viewer_count': item['viewer_count'],
-                'language': item['language'],
-                'type': item['type'],
-                'result_count': stream_counter 
+                'viewer_count': item['viewer_count']
             }
-        print(stream_counter)
-            
+            stream_counter += 1
  
         dynamic_header = stream_counter
 
-        return render_template('index.html', dynamic_header=dynamic_header, streams=streams)
+        return render_template('new_layout.html', dynamic_header=dynamic_header, streams=streams)
         
            
 
     else:
-        return redirect('/')
+        return redirect('new_layout.html')
     
 def build_api_url(source_url):
     

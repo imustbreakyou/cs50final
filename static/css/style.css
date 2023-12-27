@@ -105,9 +105,10 @@ html, body {
          .results-header-container {
             display:flex;
             flex-direction: column;
-            border: 2px solid blue;
+            gap: 10px;
+            
             flex: 0 0 auto;
-            margin: 10px;
+            margin: 5px;
             
 
          }
@@ -177,7 +178,7 @@ html, body {
                }
 
                .left-thumbnail {
-                  aspect-ratio: 
+                  
                }
 
 

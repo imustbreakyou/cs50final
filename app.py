@@ -6,7 +6,7 @@
 # Form to dict from here https://vortex.hashnode.dev/how-to-obtain-dict-from-a-flask-request-form-ck6c6ertx006s3cs1rw60rsk8 #
 # Help with parsing Json: https://brightdata.com/blog/how-tos/parse-json-data-with-python
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for, flash, redirect
 from dotenv import load_dotenv
 import os
 import requests
@@ -108,9 +108,9 @@ def build_api_url(source_url):
 
 
 # Form Handler Function 
-#def form_handler():
-#   data = request.form.to_dict()
-# n=0  
+def form_handler():
+    data = request.form.to_dict()
+    n=0  
 # if data
 #   for data in data:
 #       data[f'variable_{n}'] = ""

@@ -16,23 +16,39 @@
   </head>
   <body>
     <div class="page-container">
-        <div class="header">CS50 Final Project: Twitch API Research</div>
+        <div class="header">CS50 Final Project: Twitch API Research</div≈ç>
         <div class="main-container">
             
           <div class="filter-container">
             <div class="filter-header">filter by....</div>
-            <div class="filter">
-              <div class="expandable-language"> Stream Language</div>
+            <form action="/call_api" method="POST" class="filter">
+              <div class="expandable-language"> Stream Language
+                <div class="checkbox-container">
+                  <label for="language1"> English </label>
+                  <input type="checkbox" id="language-1" name="languages" value="english"><br>
+                  
+                </div>
+                <div class="checkbox-container">
+                  <label for="language2"> Spanish </label>
+                  <input type="checkbox" id="langauge-2" name="languages" value="spanish"><br>
+                </div>
+                <div class="checkbox-container">
+                  <label for="language3"> German </label>
+                  <input type="checkbox" id="langauge-3" name="languages" value="german"><br>
+                </div>
+              </div>
               <div class="expandable-type">Stream Type</div>
               <div class="expandable-game-name">Stream Catagory</div>
               <div class="safe-search">Safe Search: ON</div>
               <div class="search-clear-container">
-                <div class="clear">Clear</div>
-                <form action="/call_api" method="POST">
-                  <button href="#"  class="search" name="call-api">Do the thing!</button>
+                <form action="/clear" method="POST">
+                  <button class="clear">Clear</button>
                 </form>
+                
+                  <button href="#"  class="search" name="call-api">Do the thing!</button>
+                
               </div>
-            </div>
+            </form>
 
           </div>
             

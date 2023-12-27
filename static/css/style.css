@@ -1,4 +1,7 @@
    
+
+ /* Checkbox help from: https://codepen.io/ghanbak/pen/KVmpXo */
+
 html, body {
    margin: 0px;
    padding: 0px;
@@ -57,13 +60,26 @@ html, body {
             
          }
 
-
+         .checkbox-container {
+            display: block;
+            flex-direction: column;
+            justify-content: flex-start;
+            border: 1px dotted green;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 10px;
+         }
 
          .expandable-language {
+            display: flex;
+            flex-direction: column;
             flex: 0 0 auto;
             border: 2px dashed red;
+            
 
          }
+
+           
          .expandable-type {
             flex: 0 0 auto;
             border: 2px dashed red;

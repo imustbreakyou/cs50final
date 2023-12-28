@@ -28,45 +28,44 @@ source_url = "https://api.twitch.tv/helix/streams"
 @app.route("/", methods=['GET', 'POST'])
 def index():
     # hard coded top games TODO def get_top-games()
-    
     top_games = [{'game_name': 'League of Legends', 'game_id': '21779'}, 
             {'game_name': 'Just Chatting', 'game_id': '509658'},
             {'game_name': 'World of Warcraft', 'game_id': '18122'},
             {'game_name': 'Fortnite', 'game_id': '33214'},
             {'game_name': 'Minecraft', 'game_id': '27471'}]
-    
-    if request.method == "GET":
-        return render_template('layout.html', top_games=top_games)
-    else:
-        return redirect('index.html')
-
-
-
-
-
-@app.route("/form_handler", methods=['GET', 'POST'])  
-def form_handler():
+    print(top_games)
+    search_executed = False
+    print(search_executed)
     if request.method == "POST":
-        # TODO empty form values
-        # language intake
-        language = request.form.getlist('language')
-        if language:
-            print(language)
-        else:
-            language = None
+        print("index POST request recieved")
+        search_executed = True
+        print("search executed status: ", search_executed)
+        streams = form_handler()
+        return render_template('index.html', top_games=top_games, streams=streams, search_executed=search_executed)
+    else:
+        print("index POST request recieved")
+        print("search executed status: ", search_executed)
+        return render_template('index.html', top_games=top_games, search_executed=search_executed)
 
-      
 
-        # type intake
-        type = request.form.getlist('type')
-        print(type)
 
-        # game intake 
-        
-        game = request.form.getlist('game')
-        print(game)
-        
-        return process_form(language, type, game)
+def form_handler():
+    print("form_handler fired")
+
+    # language intake
+    language = request.form.getlist('language')
+    print(language)
+   
+    # type intake
+    type = request.form.getlist('type')
+    print(type)
+
+    # game intake 
+    
+    game = request.form.getlist('game')
+    print(game)
+    
+    return process_form(language, type, game)
 
 
     
@@ -108,7 +107,7 @@ def process_form(language, type, game):
 
 
 def build_api_url(source_url, parameter_string):
-
+    print("build_api_url fired")
      # Prepare API Call
     api_url = f"{source_url}?{parameter_string}"
     print(f"api_url: {api_url}")
@@ -170,12 +169,11 @@ def call_api(api_url):
             'viewer_count': item['viewer_count'],
             'language': item['language'],
             'type': item['type'],
-            'result_count': stream_counter,
+            
             'game_id': item['game_id']
         }
+        streams['total+streams'] = stream_counter
     print(stream_counter)
-        
+    print(streams['total+streams'])
 
-    dynamic_header = stream_counter
-
-    return render_template('index.html', dynamic_header=dynamic_header, streams=streams)
+    return streams

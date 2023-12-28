@@ -6,38 +6,38 @@
 
 
 {% block title %}
-results
+default results
 {% endblock %}
 
 
   
     <div class="results-header-container">
-      <div class="results-filters"> filter 1, filter 2, filter 3</div>
+      <div class="results-filters"> </div>
       <div class="results-header">
-        <div class="results-info">Total Results: {{ streams['total_streams']}}</div>
+        <div class="results-info">Total Results: None</div>
         <div class="results-sort-by"> sort by </div>
       </div>
     </div>
     <div class="results"> 
         
+`
 
-    {% for user_id, stream in streams.items() %}
 
 
         <div class="results-tile">
           
           <div class="tile-left">
-            <div class="left-viewers">Viewers: {{ loop.index }} </div>
+            <div class="left-viewers"> Viewers: 0 </div>
             <div class="left-thumbnail"></div>
           </div>
           <div class="tile-center">
-            <div class="center-info">{{ stream.user_name }} (User_ID:{{ user_id }} )  </div>
-            <div class="center-tags"> {{ stream.type }} // {{ stream.language }} // {{ stream.game_name }} // {{ stream.game_id }} // Safe Search: ON</div>
+            <div class="center-info">Username: NA (User_ID: NA )  </div>
+            <div class="center-tags">Tags: NA </div>
           </div>
-          <div class="tile-right"> # { {stream.result_count }}</div>
+          <div class="tile-right"> Result Number: NA </div>
         </div>
       
-    {% endfor %}
+
   </div>
   <div class="results-footer"></div>
 

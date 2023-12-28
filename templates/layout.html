@@ -10,7 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CS50 Final Project</title>
+    <title>
+      {% block title %}
+      <!-- DEFAULT CONTENT -->
+      {% endblock %}
+    </title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
   </head>
@@ -18,90 +22,8 @@
     <div class="page-container">
         <div class="header">CS50 Final Project: Twitch API Research</div>
         <div class="main-container">
-            
-          <div class="filter-container">
-            <div class="filter-header">filter by....</div>
-            <form action="/form_handler" method="POST" class="filter">
-              <div class="expandable-language"> Stream Language
-                <div class="checkbox-container">
-                  <label for="language1"> English </label>
-                  <input type="checkbox" id="language-1" name="language" value="en"><br>
-                  
-                </div>
-                <div class="checkbox-container">
-                  <label for="language2"> Spanish </label>
-                  <input type="checkbox" id="langauge-2" name="language" value="es"><br>
-                </div>
-                <div class="checkbox-container">
-                  <label for="language3"> German </label>
-                  <input type="checkbox" id="langauge-3" name="language" value="de"><br>
-                </div>
-              </div>
-              <div class="expandable-type">Stream Type!
-                <div class="checkbox-container">
-                  <label for="type1"> Live </label>
-                  <input type="checkbox" id="type-1" name="type" value="live"><br>
-                </div>
-              </div>
-              <div class="expandable-game-name">Stream Catagory
-                {% block content %}
-                  {% for game in top_games %}
-                  <div class="checkbox-container">
-                    <label for="game-{{ loop.index }}"> {{ game['game_name']}} </label>
-                    <input type="checkbox" id="game-{{ loop.index }}" name="game" value="{{ game['game_id'] }}"><br>
-                  </div>
-                  {% endfor %}
-                {% endblock %}
-              </div>
-             <!--"League of Legends": "21779", "Just Chatting": "509658", "World of Warcraft": "18122", "Fortnite": "33214", "Minecraft": "27471" -->
-              
-              <div class="filter-button-container">
-               
-              
-                <button class="clear" name="clear-filters">Clear Filters</button>
-          
-                <button href="#"  class="search" name="call-api">Search</button>
-              
-              </div>
-            </form>
-
-          </div>
-            
-            <div class="results-container"> 
-              
-
-              
-              <div class="results-header-container">
-                <div class="results-filters"> filter 1, filter 2, filter 3</div>
-                <div class="results-header">
-                  <div class="results-info">Total Results: #</div>
-                  <div class="results-sort-by"> sort by</div>
-                </div>
-              </div>
-              
-              <div class="results"> 
-
-             
-                    <div class="results-tile">
-                      
-                      <div class="tile-left">
-                        <div class="left-viewers">Viewers: </div>
-                        <div class="left-thumbnail">IMG</div>
-                      </div>
-                      <div class="tile-center">
-                        <div class="center-info">User Name: (User_ID: ) </div>
-                        <div class="center-tags"> Type, Language,  Safe Search: ON</div>
-                      </div>
-                      <div class="tile-right">Result #</div>
-                    </div>
-                  
-                    
-              </div>
-            
-
-              <div class="results-footer"></div>
-            </div>
-          <div class="results-right-margin"></div>
+          {% block content%}
+          {% endblock %}
         </div>
         <div class="footer">footer</div>
 

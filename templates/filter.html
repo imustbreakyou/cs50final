@@ -1,0 +1,50 @@
+
+{% block title %}
+filter
+{% endblock %}
+
+
+<div class="filter-header">filter by....</div>
+<form action="/form_handler" method="POST" class="filter">
+  <div class="expandable-language"> Stream Language
+    <div class="checkbox-container">
+      <label for="language1"> English </label>
+      <input type="checkbox" id="language-1" name="language" value="en"><br>
+      
+    </div>
+    <div class="checkbox-container">
+      <label for="language2"> Spanish </label>
+      <input type="checkbox" id="langauge-2" name="language" value="es"><br>
+    </div>
+    <div class="checkbox-container">
+      <label for="language3"> German </label>
+      <input type="checkbox" id="langauge-3" name="language" value="de"><br>
+    </div>
+  </div>
+  <div class="expandable-type">Stream Type!
+    <div class="checkbox-container">
+      <label for="type1"> Live </label>
+      <input type="checkbox" id="type-1" name="type" value="live"><br>
+    </div>
+  </div>
+  <div class="expandable-game-name">Stream Catagory
+    
+      {% for game in top_games %}
+      <div class="checkbox-container">
+        <label for="game-{{ loop.index }}"> {{ game['game_name']}} </label>
+        <input type="checkbox" id="game-{{ loop.index }}" name="game" value="{{ game['game_id'] }}"><br>
+      </div>
+      {% endfor %}
+    
+  </div>
+
+  
+  <div class="filter-button-container">
+   
+  
+    <button class="clear" name="clear-filters">Clear Filters</button>
+
+    <button href="#"  class="search" name="call-api">Search</button>
+  
+  </div>
+</form>

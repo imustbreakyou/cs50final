@@ -1,95 +1,22 @@
-<!-- Attributions --> 
-<!-- Design Inspiration:  v -->
-<!-- Boilerplate: https://www.freecodecamp.org/news/basic-html5-template-boilerplate-code-example/ -->
-<!-- Flexbox Education and resources: https://www.theodinproject.com/lessons/foundations-introduction-to-flexbox -->
+{% extends 'layout.html' %}
+
+{% block title %}Home Page{% endblock %}
 
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CS50 Final Project</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-  </head>
-  <body>
-    <div class="page-container">
-        <div class="header">CS50 Final Project: Twitch API Research</div>
-        <div class="main-container">
-            
-          <div class="filter-container">
-            <div class="filter-header">filter by....</div>
-            <div class="filter">
-              <div class="expandable-language"> Stream Language</div>
-              <div class="expandable-type">Stream Type</div>
-              <div class="expandable-game-name">Stream Catagory</div>
-              <div class="safe-search">Safe Search: ON</div>
-              <div class="search-clear-container">
-                <div class="clear">Clear</div>
-                <form action="/call_api" method="POST">
-                  <button href="#"  class="search" name="call-api">Do the thing!</button>
-                </form>
-              </div>
-            </div>
-
-          </div>
-            
-            <div class="results-container"> 
-              
-
-              {% block content %}
-              <div class="results-header-container">
-                <div class="results-filters"> filter 1, filter 2, filter 3</div>
-                <div class="results-header">
-                  <div class="results-info">Total Results: {{ dynamic_header }}</div>
-                  <div class="results-sort-by"> sort by</div>
-                </div>
-              </div>
-              
-              <div class="results"> 
-
-                {% for user_id, stream in streams.items() %}
-
-             
-                    <div class="results-tile">
-                      
-                      <div class="tile-left">
-                        <div class="left-viewers">Viewers: {{ stream.viewer_count }} </div>
-                        <div class="left-thumbnail"></div>
-                      </div>
-                      <div class="tile-center">
-                        <div class="center-info">{{ stream.user_name }} (User_ID:{{ user_id }} )  </div>
-                        <div class="center-tags"> {{ stream.type }} // {{ stream.language }} // {{ stream.game_name }} // {{ stream.game_id }} // Safe Search: ON</div>
-                      </div>
-                      <div class="tile-right"> # { {stream.result_count }}</div>
-                    </div>
-                  
-                {% endfor %}
-              </div>
-           
-              {% endblock %}
-              <div class`1  ="results-footer"></div>
-            </div>
-          <div class="results-right-margin"></div>
-        </div>
-        <div class="footer">footer</div>
-
-
-
+{% block content %}  
+    <div class="filter-container">
+      {% include 'filter.html' %}
     </div>
+      
+    <div class="results-container">    
+    {% if search_executed %}
+        {% include 'results.html' %}
+      {% else %}        
+        {% include 'default-results.html' %}
+    {% endif %}
+    </div>
+ 
+    
+    
 
-
-
-
-
-
-
-
-
-
-
-	<script src="index.js"></script>
-  </body>
-</html>
+  {% endblock %}

@@ -1,10 +1,26 @@
    
 
  /* Checkbox help from: https://codepen.io/ghanbak/pen/KVmpXo */
+/* color pallet information: https://www.smashingmagazine.com/2020/08/application-color-schemes-css-custom-properties/ */
+/* color pallet generator: https://imagecolorpicker.com/ */
+
+:root {
+   --primary-blue: #b4cbf2; 
+   --secondary-blue: #94a1b4; 
+   --light-blue: #e9eeee;
+   --accent-blue: #abdbe3;
+   --text-gray: #2b3739; 
+   --background-gray: #e7eaec; 
+   --header-gray: #d0d3d4;
+   --offwhite: #f8f8f8;
+   --border-gray: #111617;
+}
 
 html, body {
    margin: 0px;
    padding: 0px;
+   font-family: "Montserrat", sans-serif;
+   background: var(--background-gray);
 
 }
 
@@ -19,15 +35,18 @@ html, body {
 
 
    .header {
-      border: 2px solid black;
+      background: var(--header-gray);
       padding: 30px;
+      font-size: 32px;
+      font-weight: 700;
+      
       
 
    }
    
    .main-container {
       display: flex;
-      border: 2px solid black;
+      
       flex: 1;
       justify-content: flex-start;
 
@@ -37,26 +56,34 @@ html, body {
          display: flex;
          flex-direction: column;
          justify-content: flex-start;
-         border: 2px solid black;
+         
          flex: 0 0 300px;
+         background: var(--background-gray);
 
       }
 
          .filter-header {
-            border: 2px solid red;
+            
             flex: 0 0 auto;
-            padding: 10px;
+            padding: 5px;
+            padding-left: 0px;
+            margin: 15px;
+            margin-left: 10px;
+            font-size: 24px;
+            font-weight: 700;
 
          }
 
          .filter {
             display: flex;
-            border: 2px solid red;
+            border-right: 2px var(--border-gray);
             flex-direction: column;
             flex: 1;
+            margin: 15px;   
             padding: 10px;
             justify-content: flex-start;
             gap: 15px;
+            background: var(--offwhite);
             
          }
 
@@ -64,32 +91,24 @@ html, body {
             display: block;
             flex-direction: column;
             justify-content: flex-start;
-            border: 1px dotted green;
-            margin-top: 5px;
+            margin-top: 10px;
             margin-bottom: 5px;
-            margin-left: 10px;
+            margin-left: 15px;
+            font-weight: 400; 
          }
 
-         .expandable-language {
+         .expandable-language,
+         .expandable-type,
+         .expandable-game-name {
             display: flex;
             flex-direction: column;
             flex: 0 0 auto;
-            border: 2px dashed red;
-            
+            gap: 4px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid dimgray;
+            font-weight: 600; 
+         }         
 
-         }
-
-           
-         .expandable-type {
-            flex: 0 0 auto;
-            border: 2px dashed red;
-
-         }
-         .expandable-game-name {
-            flex: 0 0 auto;
-            border: 2px dashed red;
-
-         }
          .safe-search {
             flex: 0 0 auto;
             border: 2px dashed red;
@@ -101,6 +120,7 @@ html, body {
             display: flex;
             margin-left: 10px;
             margin-right: 10px;
+
 
             
             
@@ -155,7 +175,7 @@ html, body {
          display: flex;
          flex-direction: column;
          flex: 1 1 auto;
-         border: 2px solid blue;
+         
 
    
       }
@@ -195,21 +215,24 @@ html, body {
 
          .results{
          
+            
+            
             flex: 1 0 auto;
             padding: 5px;
-            background: lightgray;
-            border: 4px solid purple;
+            
+            background: var(--background-gray);
+            
 
          }
 
          .results-right-margin {
-            border: 2px solid blue;
+            
             padding: 10px;
          }
               
 
          .results-footer {
-            border: 2px solid blue;
+           
 
          }
          
@@ -218,9 +241,14 @@ html, body {
          .results-tile {
             display: flex;
             justify-content: space-between;
-            background: white;
+            background: var(--offwhite);
+            padding-top: 0px;
+            margin-top: 0px;
             margin: 3px;
-            padding: 2px;
+            padding: 4px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            
             
    
          }
@@ -228,7 +256,7 @@ html, body {
             .tile-left {
                flex: 0 1 150px;
                margin-left: 5px;
-               border-right: 2px solid darkgray;
+               
             }
 
                .left-viewers {
@@ -244,7 +272,10 @@ html, body {
             .tile-center {
                flex: 2 0 auto;
                margin-left: 5px;
-               border-right: 2px solid darkgray;
+               padding-left:10px;
+               
+               border-right: 4px solid var(--background-gray);
+               border-left: 4px solid var(--background-gray);
             }
 
                .center-info {
@@ -267,7 +298,15 @@ html, body {
    
 
    .footer {
-      border: 2px solid black;
+      border-top: var(--border-gray);
+      background: var(--header-gray);
       padding: 15px;
    }
    
+   .lable {
+      padding-left: 5px;
+   }
+
+   .checkbox {
+      
+   }

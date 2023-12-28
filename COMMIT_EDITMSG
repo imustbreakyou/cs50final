@@ -1,15 +1,15 @@
-implement URL concatenation function with hardcoded parameter
+Implement major front-end layout and back-end functionality
 
-- Created function to concatenate URL with URL parameter
-- Harded Coded Spanish as a query 
-- Confirmed function operates as expected with Spanish data returned
-- Built Pseudocode framework for handle_form_submission function 
-
+- Completed the majority of front-end layout design. 
+- Backend functions developed and working well.
+- Remaining tasks: CSS styling enhancements and JavaScript design and 
+implementation
 
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 #
-# On branch main
+# On branch new-frontend
 # Changes to be committed:
-#	modified:   app.py
+#	modified:   templates/filter.html
+#	modified:   templates/results.html
 #

@@ -9,6 +9,7 @@
 # Negative Indexing to remove final character from string: https://www.geeksforgeeks.org/python-program-to-remove-last-character-from-the-string/
 # Rendering a dictionary in jinja and python: https://stackoverflow.com/questions/19141073/rendering-a-dictionary-in-jinja2
 # remove final character from string: https://www.w3schools.com/python/ref_string_rstrip.asp#:~:text=The%20rstrip()%20method%20removes,default%20trailing%20character%20to%20remove.
+
 from flask import Flask, request, render_template, url_for, flash, redirect
 from dotenv import load_dotenv
 import os
@@ -42,8 +43,9 @@ def index():
         print("search executed status: ", search_executed)
         streams = form_handler()
         return render_template('index.html', top_games=top_games, streams=streams, search_executed=search_executed)
+    
     else:
-        print("index POST request recieved")
+        print("index GET request recieved")
         print("search executed status: ", search_executed)
         return render_template('index.html', top_games=top_games, search_executed=search_executed)
 
@@ -101,7 +103,7 @@ def process_form(language, type, game):
 
     parameter_string = parameter_string.rstrip('&')
     print(parameter_string)
-    return build_api_url(source_url, parameter_string)
+    build_api_url(source_url, parameter_string)
     
 
 

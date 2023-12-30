@@ -42,7 +42,10 @@ def index():
         search_executed = True
         print("search executed status: ", search_executed)
         streams = form_handler()
-        return render_template('index.html', top_games=top_games, streams=streams, search_executed=search_executed)
+        print(streams)
+        total_results = str(len(streams))
+        print(len(streams))
+        return render_template('index.html', top_games=top_games, streams=streams, total_results=total_results, search_executed=search_executed)
     
     else:
         print("index GET request recieved")
@@ -103,7 +106,7 @@ def process_form(language, type, game):
 
     parameter_string = parameter_string.rstrip('&')
     print(parameter_string)
-    build_api_url(source_url, parameter_string)
+    return build_api_url(source_url, parameter_string)
     
 
 
@@ -168,14 +171,14 @@ def call_api(api_url):
             'user_id': item['user_id'],
             'user_name': item['user_name'],
             'game_name': item['game_name'],
-            'viewer_count': item['viewer_count'],
+            'viewer_count': str(item['viewer_count']),
             'language': item['language'],
             'type': item['type'],
             
             'game_id': item['game_id']
         }
-        streams['total+streams'] = stream_counter
+        
     print(stream_counter)
-    print(streams['total+streams'])
+    
 
     return streams

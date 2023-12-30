@@ -6,12 +6,14 @@
 
   
     <div class="results-header-container">
-      <div class="results-filters"> 
-        
+      <div class="results-filters">
+        <div class="filter-tag">place holder</div>
       </div>
       <div class="results-header">
-        <div class="results-info">Total Results: {{ streams['total_streams']}}</div>
-        <div class="results-sort-by"> sort by </div>
+        {% block content %}
+        <div class="results-info">Total Results: {{ total_results }}</div>
+        {% endblock  %}
+        <div class="results-sort-by"> </div>
       </div>
     </div>
     <div class="results"> 
@@ -21,17 +23,29 @@
 
 
         <div class="results-tile">
+       
           
           <div class="tile-left">
-            <div class="left-viewers">Viewers: {{ stream.viewer_count }} </div>
+            <div class="left-viewers" font-variant-numeric: normal; >Viewers: {{ stream.viewer_count }} </div>
             <div class="left-thumbnail"></div>
           </div>
           <div class="tile-center">
-            <div class="center-info">{{ stream.user_name }} (User_ID:{{ user_id }} )  </div>
-            <div class="center-tags"> {{ stream.type }} // {{ stream.language }} // {{ stream.game_name }} // {{ stream.game_id }}</div>
+            <div class="center-info">
+              <div class="username"> {{ stream.user_name }} </div> 
+              <div class="user-id"> Streamer ID: {{ user_id }}  </div> 
+
+            </div>
+            <div class="center-tags-container">
+              <div class="tags">Type: {{ stream.type }}</div> 
+              <div class="tags">Language: {{ stream.language }}</div> 
+              <div class="tags">Game: {{ stream.game_name }} </div> 
+              <div class="tags">Game ID: {{ stream.game_id }} </div> 
+   
+            </div>
           </div>
-          <div class="tile-right"> # {{ loop.index }}</div>
+          <div class="tile-right"> <div class="rank"># {{ loop.index }}</div></div>
         </div>
+        <div class="results-right-margin"></div>
       
     {% endfor %}
   </div>

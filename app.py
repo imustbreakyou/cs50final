@@ -40,59 +40,54 @@ def index():
             {'language': 'German', 'code': 'de'}
     ]
        
-    print(language)
-    print(top_games)
     search_executed = False
-    print(search_executed)
+
     if request.method == "POST":
-        print("index POST request recieved")
+
         search_executed = True
-        print("search executed status: ", search_executed)
+     
         streams = form_handler()
-        print(streams)
+
         total_results = str(len(streams))
-        print(len(streams))
+
         return render_template('index.html', top_games=top_games, streams=streams, total_results=total_results, search_executed=search_executed, language=language)
     
     else:
-        print("index GET request recieved")
-        print("search executed status: ", search_executed)
+    
         return render_template('index.html', top_games=top_games, search_executed=search_executed, language=language)
 
 
 
 def form_handler():
-    print("form_handler fired")
+
 
     # language intake
     language = request.form.getlist('language')
-    print(language)
+
    
     # type intake
     type = request.form.getlist('type')
-    print(type)
 
     # game intake 
     
     game = request.form.getlist('game')
-    print(game)
+
     
     return process_form(language, type, game)
 
 
     
 def process_form(language, type, game):
-    print("process_form fired!")
+
     # set empty string
     parameter_string = ""
-    print("Pre iteration parameter string =", parameter_string)
 
     if language:  
         #iterate over dictionary
         for lang in language:
             #use f-string for url creation
             parameter_string += f"language={lang}&"
-            print("language processed")
+
 
 
      
@@ -108,23 +103,23 @@ def process_form(language, type, game):
         for item in game:
              #use f-string for url creation
             parameter_string += f"game_id={item}&"
-            print("game processed")
+
 
 
     parameter_string = parameter_string.rstrip('&')
-    print(parameter_string)
+
     return build_api_url(source_url, parameter_string)
     
 
 
 
 def build_api_url(source_url, parameter_string):
-    print("build_api_url fired")
+
      # Prepare API Call
     api_url = f"{source_url}?{parameter_string}"
-    print(f"api_url: {api_url}")
+
     
-    print(api_url)
+
     #return final_url
     return call_api(api_url)
         
@@ -134,19 +129,14 @@ def build_api_url(source_url, parameter_string):
 
 
 def call_api(api_url):
-    
-    print("call_api fired")
 
-   
-    
     load_dotenv('/absolute/path/to/.env')
     client_id = os.getenv('TWITH_CLIENT_ID')
     oauth_token = os.getenv('TWITCH_OAUTH_TOKEN')
 
-
     # Error handling for missing access tokens
     if not client_id or not oauth_token:
-        print("missing API token or id")
+ 
         return None
     
     headers = {
@@ -157,11 +147,11 @@ def call_api(api_url):
     }
     # THIS MAKES THE REQUEST 
     response = requests.get(api_url, headers=headers)
-    print(response)
+
     
     # Error Handling for failed API Call 
     if response.status_code != 200:
-        print(f"Failed to fetch data: {response.status_code}")
+    
         return None
 
     
@@ -185,7 +175,6 @@ def call_api(api_url):
             'game_id': item['game_id']
         }
         
-    print(stream_counter)
     
 
     return streams

@@ -1,12 +1,8 @@
 
 
-
-
 <div class="filter-header">Filter by...</div>
 <form action="/" method="POST" class="filter">
   
-
-
 
   <div class="expandable-containter">
     <div class="expandable-header-container">
@@ -21,7 +17,7 @@
       {% for lang in language %}
         <div class="checkbox-container">
           <input class ="checkbox" type="checkbox" id="lang-{{ loop.index }}" name="language" value="{{ lang['code'] }}">
-          <label class="lable" for="lang-{{ loop.index }}"> {{ lang['language'] }} </label><br>
+          <label class="lable" > {{ lang['language'] }} </label><br>
         </div>
       {% endfor %}
     
@@ -44,7 +40,7 @@
       <div class="checkbox-container">
       
         <input class ="checkbox" type="checkbox" id="type-1" name="type" value="live">
-        <label class="lable" for="type1"> Live </label><br>
+        <label class="lable" > Live </label><br>
       </div>
       
     
@@ -66,7 +62,7 @@
       {% for game in top_games %}
       <div class="checkbox-container">
         <input class ="checkbox" type="checkbox" id="game-{{ loop.index }}" name="game" value="{{ game['game_id'] }}">
-        <label class="lable" for="game-{{ loop.index }}"> {{ game['game_name']}} </label><br>
+        <label class="lable" > {{ game['game_name']}} </label><br>
       </div>
       {% endfor %}
     
@@ -100,7 +96,7 @@
   
     <button class="clear" name="clear-filters">Clear Filters</button>
 
-    <button href="#"  class="search" name="call-api">Search</button>
+    <button  class="search" name="call-api">Search</button>
   
   </div>
 </form>

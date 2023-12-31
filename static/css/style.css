@@ -56,51 +56,53 @@ img {
       display: flex;
       flex: 1;
       justify-content: flex-start;
-      
-
    }
 
-      .filter-container {
+   .filter-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex: 0 0 300px;
+      background: var(--background-gray);
+
+   }
+   .results-header,
+   .filter-header {
+      flex: 0 0 auto;
+      padding-left: 0px;
+      margin-bottom: 0px;
+      margin: 5px;
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-bottom: 10px;
+      font-size: 24px;
+      }
+
+      .results,
+      .filter {
          display: flex;
+         border-right: 2px var(--border-gray);
          flex-direction: column;
+         flex: 1;
+         margin: 15px;   
+         padding: 15px;
+         margin-top: 15px;
          justify-content: flex-start;
-         flex: 0 0 300px;
-         background: var(--background-gray);
+         gap: 15px;
+         background: var(--offwhite);
+      }
+
+      .filter {
+         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
       }
-         .results-header,
-         .filter-header {
-            
-            flex: 0 0 auto;
-            padding-left: 0px;
-            margin-bottom: 0px;
-            margin: 5px;
-            margin-top: 20px;
-            margin-left: 20px;
-            margin-bottom: 10px;
-            font-size: 24px;
-           
 
-         }
-         .results,
-         .filter {
-            display: flex;
-            border-right: 2px var(--border-gray);
-            flex-direction: column;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            flex: 1;
-           
-            margin: 15px;   
-            padding: 15px;
-            margin-top: 15px;
-            
-            justify-content: flex-start;
-            gap: 15px;
-            background: var(--offwhite);
-           
-            
-            
-         }
+      .results {
+         gap: 0px;
+         margin-top: 10px;
+         
+         
+      }
 
          .checkbox-container {
             display: block;
@@ -297,6 +299,7 @@ img {
             padding: 4px;
             padding-top: 6px;
             padding-bottom: 6px;
+            margin-bottom: 0px;
             
             
    

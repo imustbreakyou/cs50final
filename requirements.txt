@@ -1,7 +1,38 @@
+commit 56162539cc294d66ae40e25623f0349384408df6
+Author: mike <8876812+imustbreakyou@users.noreply.github.com>
+Date:   Wed Dec 13 15:37:13 2023 -0800
 
- 
+    Parse API with hard-coded paremeters and render results in rests.html
+    - Parsed by user_id, user_name, game_name, and viewer_count
+    - Rendered Table Data dynamically with Jinja
+    - Table Headers still hard-coded
 
-  
-   
+commit 5d709a6d8d21e06898f3e150aa09cbb51d8145f8
+Author: mike <8876812+imustbreakyou@users.noreply.github.com>
+Date:   Wed Dec 13 11:20:48 2023 -0800
+
+    implement URL concatenation function with hardcoded parameter
     
-    
+    - Created function to concatenate URL with URL parameter
+    - Harded Coded Spanish as a query
+    - Confirmed function operates as expected with Spanish data 
+turned
+    - Built Pseudocode framework for handle_form_submission function
+on
+
+commit bfc985973098465990052f09fa40ce8a0006fde1
+Author: mike <8876812+imustbreakyou@users.noreply.github.com>
+Date:   Wed Dec 13 10:16:12 2023 -0800
+
+    add env vars for API access tokens and verify successful API
+onnection
+
+commit 30ba20136334f78b82c42bb272d308bc52f527de
+Author: mike <8876812+imustbreakyou@users.noreply.github.com>
+Date:   Tue Dec 12 15:29:49 2023 -0800
+
+    Begin API MVP implementation
+
+commit ff74cdebf52fde32aebb57886c1b617442728b80
+Author: mike <8876812+imustbreakyou@users.noreply.github.com>
+:

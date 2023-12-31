@@ -34,6 +34,13 @@ def index():
             {'game_name': 'World of Warcraft', 'game_id': '18122'},
             {'game_name': 'Fortnite', 'game_id': '33214'},
             {'game_name': 'Minecraft', 'game_id': '27471'}]
+    
+    language = [{'language': 'English', 'code': 'en'}, 
+            {'language': 'Spanish', 'code': 'es'},
+            {'language': 'German', 'code': 'de'}
+    ]
+       
+    print(language)
     print(top_games)
     search_executed = False
     print(search_executed)
@@ -45,12 +52,12 @@ def index():
         print(streams)
         total_results = str(len(streams))
         print(len(streams))
-        return render_template('index.html', top_games=top_games, streams=streams, total_results=total_results, search_executed=search_executed)
+        return render_template('index.html', top_games=top_games, streams=streams, total_results=total_results, search_executed=search_executed, language=language)
     
     else:
         print("index GET request recieved")
         print("search executed status: ", search_executed)
-        return render_template('index.html', top_games=top_games, search_executed=search_executed)
+        return render_template('index.html', top_games=top_games, search_executed=search_executed, language=language)
 
 
 

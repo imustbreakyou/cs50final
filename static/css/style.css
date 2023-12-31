@@ -63,6 +63,7 @@ img {
          flex-direction: column;
          justify-content: flex-start;
          
+         
          border: 1px solid blue;
          flex: 0 0 300px;
          background: var(--background-gray);
@@ -136,14 +137,9 @@ img {
          }
          
          .filter-button-container {
-            
             display: flex;
             margin-left: 10px;
             margin-right: 10px;
-
-
-            
-            
             gap: 10px;
          }
             .clear {
@@ -471,7 +467,7 @@ img {
 
 .filter-container {
    display: flex;
-   align-items: center;
+   
  }
  
  .filter-field {
@@ -483,17 +479,21 @@ img {
    cursor: pointer;
    /* Additional button styling */
  }
- 
- .expandable-panel {
+ .expandable-panel-languages,
+ .expandable-panel-types,
+ .expandable-panel-games {
    display: none; /* Panel is hidden by default */
    /* Additional panel styling */
-   border: 1px dotted pink;
+   
+   transition: height 200ms;
  }
 
    .expandable-containter {
       display: flex;
       flex-direction: column;
-      border: 1px solid purple;
+      gap: 20px;
+      
+      
    }
    .expandable-header-container {
       display: flex;
@@ -506,11 +506,13 @@ img {
       display: flex;
       justify-content: space-between;
       flex: 1;
-      border: 1px dashed green;
+      
 
    }
-   .expand-button {
-      border: 1 thick grey;
+   .expand-button-languages,
+   .expand-button-types,
+   .expand-button-games {
+      
 
       flex: 0px;
    }

@@ -110,6 +110,11 @@ img {
             margin-left: 15px;
             font-weight: 400; 
          }
+         .accordion-header {
+            display: flex;
+            border: 1px solid purple;
+            justify-content: space-between;
+         }
 
          .expandable-language,
          .expandable-type,
@@ -121,6 +126,7 @@ img {
             padding-bottom: 15px;
             border-bottom: 1px solid dimgray;
             font-weight: 600; 
+            border: 1px solid orange;
          }         
 
          .safe-search {
@@ -405,6 +411,7 @@ img {
    }
 
    .checkbox {
+      border: 1px solid red;
       
    }
 
@@ -462,3 +469,48 @@ img {
 
 }
 
+.filter-container {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .filter-field {
+   /* Style your filter input field */
+ }
+ 
+ .expand-button {
+   margin-left: 10px; /* Or any spacing you prefer */
+   cursor: pointer;
+   /* Additional button styling */
+ }
+ 
+ .expandable-panel {
+   display: none; /* Panel is hidden by default */
+   /* Additional panel styling */
+   border: 1px dotted pink;
+ }
+
+   .expandable-containter {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid purple;
+   }
+   .expandable-header-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+   }
+
+   .expandable-title {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      border: 1px dashed green;
+
+   }
+   .expand-button {
+      border: 1 thick grey;
+
+      flex: 0px;
+   }

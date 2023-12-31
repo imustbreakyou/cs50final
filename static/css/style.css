@@ -41,10 +41,12 @@ img {
 
 
    .header {
-      background: var(--header-gray);
+      background: var(--secondary-blue);
       padding: 30px;
       font-size: 32px;
       font-weight: 700;
+      color: var(--offwhite);
+
       
       
 
@@ -62,9 +64,6 @@ img {
          display: flex;
          flex-direction: column;
          justify-content: flex-start;
-         
-         
-         border: 1px solid blue;
          flex: 0 0 300px;
          background: var(--background-gray);
 
@@ -83,21 +82,22 @@ img {
            
 
          }
-
+         .results,
          .filter {
             display: flex;
             border-right: 2px var(--border-gray);
             flex-direction: column;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             flex: 1;
+           
             margin: 15px;   
-            padding: 10px;
-            margin-top: 0px;
-            padding-top: 0px;
+            padding: 15px;
+            margin-top: 15px;
+            
             justify-content: flex-start;
             gap: 15px;
             background: var(--offwhite);
-            border: 1px solid blue;
+           
             
             
          }
@@ -113,7 +113,7 @@ img {
          }
          .accordion-header {
             display: flex;
-            border: 1px solid purple;
+            
             justify-content: space-between;
          }
 
@@ -127,7 +127,7 @@ img {
             padding-bottom: 15px;
             border-bottom: 1px solid dimgray;
             font-weight: 600; 
-            border: 1px solid orange;
+            
          }         
 
          .safe-search {
@@ -141,6 +141,7 @@ img {
             margin-left: 10px;
             margin-right: 10px;
             gap: 10px;
+            
          }
             .clear {
                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -193,7 +194,7 @@ img {
          flex-direction: column;
          justify-content: space-between;
          flex: 1 1 auto;
-         border: 1px solid blue;
+         
          
 
    
@@ -247,7 +248,7 @@ img {
 
          .results{
          
-            border: 1px solid blue;
+            
             
             flex: 1 0 auto;
             padding: 5px;
@@ -258,13 +259,13 @@ img {
          }
 
          .results-right-margin {
-            border: 1px solid blue;
+            
             padding: 10px;
          }
               
 
          .results-footer {
-            border: 1px solid blue;
+            
            
 
          }
@@ -399,7 +400,7 @@ img {
       border-top: var(--border-gray);
       background: var(--header-gray);
       padding: 15px;
-      border: 1px solid blue;
+      
    }
    
    .lable {
@@ -471,21 +472,22 @@ img {
  }
  
  .filter-field {
-   /* Style your filter input field */
+  
  }
  
  .expand-button {
-   margin-left: 10px; /* Or any spacing you prefer */
+   margin-left: 10px;
    cursor: pointer;
-   /* Additional button styling */
+   
  }
  .expandable-panel-languages,
  .expandable-panel-types,
  .expandable-panel-games {
-   display: none; /* Panel is hidden by default */
-   /* Additional panel styling */
-   
-   transition: height 200ms;
+   display: none; 
+
+   padding-bottom:10px;
+   transition: height 10000ms;
+   border-bottom: 1px solid var(--border-gray)
  }
 
    .expandable-containter {
@@ -507,12 +509,64 @@ img {
       justify-content: space-between;
       flex: 1;
       
+      
 
    }
    .expand-button-languages,
    .expand-button-types,
    .expand-button-games {
+      background: none;
+      color: inherit; 
+      border: none;
+
+      
+      
+      
+      flex: 0px;
+   }
+
+
+   .expandable-language {
+      
+   }
+
+
+   .header {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      
+   }
+
+   .header-right {
+      display: flex;
+      justify-content: flex-start;
+      flex: 1;
       
 
-      flex: 0px;
+   }
+
+   .header-left {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+     
+      flex: 1;
+      
+   }
+
+   .header-logo {
+      flex: 0;
+      
+      margin-right: 20px;
+      max-width: 100px;
+
+   }
+
+   .header-text {
+      flex: 1;
+      font-size: 40px;
+
    }

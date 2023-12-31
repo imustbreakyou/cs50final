@@ -55,3 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+  var clearButton = document.querySelector('.clear');
+
+  clearButton.addEventListener('click', function() {
+    var checkboxes = document.querySelectorAll('checkbox');
+    checkboxes.forEach(function(checkbox) {
+      checkbox.checked = false;
+    });
+  });
+});
